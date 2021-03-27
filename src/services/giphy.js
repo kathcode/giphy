@@ -9,6 +9,6 @@ export const getTrendingGif = async () => {
     const response = await axios(URL);
     return response.data;
   } catch (error) {
-    throw Error(error)
+   return error
   }
 };
