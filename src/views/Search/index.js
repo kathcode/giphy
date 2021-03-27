@@ -1,13 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { IconButton } from '@material-ui/core';
+
+import Card from '../../shared/Card';
+import { Container } from './styled';
+
 const SearchView = ({ gifList, isLoading }) => {
   return (
     <>
       {isLoading && <p>Is loading</p>}
-      {!isLoading && gifList.map(gif => (
-        <div key={gif.id}>{gif.title}</div>
-      ))}
+      <Container>
+        {!isLoading && gifList.map(gif => (
+          <Card
+            key={gif.id}
+            title={gif.title}
+            username={gif.username}
+            gifUrl={gif.images?.original?.url}
+            altGif={gif.title}
+            iconElement={<IconButton onClick={() => console.log('call the action here')}><FavoriteIcon /></IconButton>}
+          />
+        ))}
+      </Container>
     </>
   )
 }
@@ -19,9 +34,9 @@ SearchView.propTypes = {
     username: PropTypes.string,
     title: PropTypes.string,
     images: PropTypes.shape({
-      downsized_still: PropTypes.shape({
+      original: PropTypes.shape({
         url: PropTypes.string
-      })
+      }),
     })
   })),
   isLoading: PropTypes.bool
