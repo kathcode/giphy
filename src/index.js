@@ -1,11 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+import SearchContainer from './containers/Search';
 
 ReactDOM.render(
   <React.StrictMode>
-    <div></div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <SearchContainer />
+        </Route>
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
