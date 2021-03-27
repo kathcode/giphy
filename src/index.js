@@ -6,6 +6,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import './index.css';
 
 import SearchContainer from './containers/Search';
 
