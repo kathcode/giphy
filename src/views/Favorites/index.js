@@ -1,19 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 // Material UI
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+
+import { Container, Icon } from './styled';
 
 import Card from '../../shared/Card';
 import Header from '../../shared/Header';
-
-const Icon = styled(KeyboardBackspaceIcon)`
-  margin-left: 10px;
-`;
 
 const Favorites = ({ gifList }) => (
   <>
@@ -21,16 +17,18 @@ const Favorites = ({ gifList }) => (
     <Link to="/">
       <Icon fontSize="large" />
     </Link>
-    {gifList.map(gif => (
-      <Card
-        key={gif.id}
-        title={gif.title}
-        username={gif.username}
-        gifUrl={gif.images?.original?.url}
-        altGif={gif.title}
-        iconElement={<IconButton onClick={() => console.log('call the action here')}><FavoriteIcon /></IconButton>}
-      />
-    ))}
+    <Container>
+      {gifList.map(gif => (
+        <Card
+          key={gif.id}
+          title={gif.title}
+          username={gif.username}
+          gifUrl={gif.images?.original?.url}
+          altGif={gif.title}
+          iconElement={<IconButton onClick={() => console.log('call the action here')}><DeleteIcon /></IconButton>}
+        />
+      ))}
+    </Container>  
   </>
 );
 
