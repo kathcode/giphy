@@ -35,7 +35,7 @@ const HomeView = ({ gifList, isLoading, onSearch, onClear, favoriteGifs }) => {
             iconColor={isFavorite(gif.id) ? 'blue' : 'gray'}
             iconElement={
               <IconButton
-                onClick={() => dispatch(addToFavorites(gif))}
+                onClick={() => (!isFavorite(gif.id) && dispatch(addToFavorites(gif)))}
               >
                 <FavoriteIcon />
               </IconButton>}
