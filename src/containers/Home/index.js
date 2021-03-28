@@ -34,18 +34,24 @@ const HomeContainer = () => {
     }
   }
 
+  const handleRandomSearch = async (term) => {
+    setIsLoading(true);
+    const response = await GifService.getRandomGif(term);
+    if (response.data) {
+      setTrendingGifs([response.data]);
+      setIsLoading(false);
+    }
+  }
+
   return (
-    <div>
-      {trendingGifs.length > 0 && (
-        <HomeView
-          gifList={trendingGifs}
-          isLoading={isLoading}
-          onSearch={handleSearch}
-          onClear={getTrendingGifs}
-          favoriteGifs={favoriteGifs}
-        />
-      )}
-    </div>
+    <HomeView
+      gifList={trendingGifs}
+      isLoading={isLoading}
+      onSearch={handleSearch}
+      onRandomSearch={handleRandomSearch}
+      onClear={getTrendingGifs}
+      favoriteGifs={favoriteGifs}
+    />
   )
 };
 

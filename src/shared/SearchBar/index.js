@@ -27,7 +27,7 @@ const Input = styled(TextField)`
   width: 50%;
 `;
 
-const SearchBar = ({ onSearch, onClear }) => {
+const SearchBar = ({ onSearch, onRandomSearch, onClear }) => {
   const [term, setTerm] = useState('');
 
   const handleClear = () => {
@@ -54,8 +54,14 @@ const SearchBar = ({ onSearch, onClear }) => {
       <Button
         onClick={(ev) => onSearch(term)}
         variant="outlined"
-        size="medium">
+        size="small">
         Search for GIF
+      </Button>
+      <Button
+        onClick={(ev) => onRandomSearch(term)}
+        variant="outlined"
+        size="small">
+        Search random
       </Button>
       <Link style={{ marginLeft: 10 }} to="/favorites">My saved gifs</Link>
     </Container>
@@ -64,11 +70,14 @@ const SearchBar = ({ onSearch, onClear }) => {
 
 SearchBar.propTypes = {
   onSearch: PropTypes.func,
-  onClear: PropTypes.func
+  onClear: PropTypes.func,
+  onRandomSearch: PropTypes.func
 }
 
 SearchBar.defaultProps = {
   onSearch: () => {},
+  onClear: () => {},
+  onRandomSearch: () => {}
 }
 
 export default SearchBar;

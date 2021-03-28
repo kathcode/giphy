@@ -8,6 +8,7 @@ import { addToFavorites } from '../../store/slices/favoriteSlice';
 // Material UI
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Card from '../../shared/Card';
 import Header from '../../shared/Header';
@@ -15,16 +16,16 @@ import SearchBar from '../../shared/SearchBar';
 
 import { Container } from './styled';
 
-const HomeView = ({ gifList, isLoading, onSearch, onClear, favoriteGifs }) => {
+const HomeView = ({ gifList, isLoading, onSearch, onRandomSearch, onClear, favoriteGifs }) => {
   const dispatch = useDispatch();
   const isFavorite = (gifId) => favoriteGifs.some(gif => gif.id === gifId);
 
   return (
     <>
       <Header title="Giphy - List" />
-      <SearchBar onSearch={onSearch} onClear={onClear} />
+      <SearchBar onSearch={onSearch} onRandomSearch={onRandomSearch} onClear={onClear} />
       <Container>
-        {isLoading && <p>Is loading</p>}
+        {isLoading && <CircularProgress />}
         {!isLoading && gifList.map(gif => (
           <Card
             key={gif.id}
@@ -60,6 +61,7 @@ HomeView.propTypes = {
   })),
   isLoading: PropTypes.bool,
   onSearch: PropTypes.func,
+  onRandomSearch: PropTypes.func,
   onClear: PropTypes.func,
   favoriteGifs: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,

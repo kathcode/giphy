@@ -3,6 +3,7 @@ import favoriteReducer from './slices/favoriteSlice';
 
 export default configureStore({
   reducer: {
-    favorite: favoriteReducer
+    favorite: favoriteReducer,
+    trending: {}
   }
 });
