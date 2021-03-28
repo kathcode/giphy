@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "msw": "^0.28.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "redux-mock-store": "^1.5.4"
   }
 }

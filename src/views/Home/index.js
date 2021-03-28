@@ -76,4 +76,8 @@ HomeView.propTypes = {
   }))
 }
 
+HomeView.defaultProps = {
+  favoriteGifs: []
+}
+
 export default HomeView;
