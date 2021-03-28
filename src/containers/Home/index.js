@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 // Views
-import SearchView from '../../views/Search'
+import SearchView from '../../views/Home'
 
 // Services
 import * as GifService from '../../services/giphy';
 
-const SearchContainer = () => {
+const HomeContainer = () => {
   const [trendingGifs, setTrendingGifs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,4 +46,4 @@ const SearchContainer = () => {
   )
 };
 
-export default SearchContainer;
+export default HomeContainer;

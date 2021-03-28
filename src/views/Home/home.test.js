@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 
-import SearchView from './';
+import SearchView from '.';
 
 const mockGif = {
   id: '1abc',

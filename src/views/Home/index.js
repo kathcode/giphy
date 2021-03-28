@@ -11,7 +11,7 @@ import SearchBar from '../../shared/SearchBar';
 
 import { Container } from './styled';
 
-const SearchView = ({ gifList, isLoading, onSearch, onClear }) => {
+const HomeView = ({ gifList, isLoading, onSearch, onClear }) => {
   return (
     <>
       <Header title="Giphy - List" />
@@ -33,7 +33,7 @@ const SearchView = ({ gifList, isLoading, onSearch, onClear }) => {
   )
 }
 
-SearchView.propTypes = {
+HomeView.propTypes = {
   gifList: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     embed_url: PropTypes.string,
@@ -50,4 +50,4 @@ SearchView.propTypes = {
   onClear: PropTypes.func
 }
 
-export default SearchView;
+export default HomeView;

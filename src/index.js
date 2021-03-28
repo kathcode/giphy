@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import './index.css';
 
-import SearchContainer from './containers/Search';
+import HomeContainer from './containers/Home';
 import FavoritesContainer from './containers/Favorites';
 
 ReactDOM.render(
@@ -16,7 +16,7 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/">
-          <SearchContainer />
+          <HomeContainer />
         </Route>
         <Route exact path="/favorites">
           <FavoritesContainer />
