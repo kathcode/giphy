@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// State
+import { useDispatch } from 'react-redux';
+import { addToFavorites } from '../../store/slices/favoriteSlice'; 
+
 // Material UI
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
@@ -12,6 +16,7 @@ import SearchBar from '../../shared/SearchBar';
 import { Container } from './styled';
 
 const HomeView = ({ gifList, isLoading, onSearch, onClear }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <Header title="Giphy - List" />
@@ -25,7 +30,12 @@ const HomeView = ({ gifList, isLoading, onSearch, onClear }) => {
             username={gif.username}
             gifUrl={gif.images?.original?.url}
             altGif={gif.title}
-            iconElement={<IconButton onClick={() => console.log('call the action here')}><FavoriteIcon /></IconButton>}
+            iconElement={
+              <IconButton
+                onClick={() => dispatch(addToFavorites(gif))}
+              >
+                <FavoriteIcon />
+              </IconButton>}
           />
         ))}
       </Container>

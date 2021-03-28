@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+// State
+import { useDispatch } from 'react-redux';
+import { removeFromFavorites } from '../../store/slices/favoriteSlice'; 
+
 // Material UI
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
@@ -11,26 +15,35 @@ import { Container, Icon } from './styled';
 import Card from '../../shared/Card';
 import Header from '../../shared/Header';
 
-const Favorites = ({ gifList }) => (
-  <>
-    <Header title="Giphy - Favorites" />
-    <Link to="/">
-      <Icon fontSize="large" />
-    </Link>
-    <Container>
-      {gifList.map(gif => (
-        <Card
-          key={gif.id}
-          title={gif.title}
-          username={gif.username}
-          gifUrl={gif.images?.original?.url}
-          altGif={gif.title}
-          iconElement={<IconButton onClick={() => console.log('call the action here')}><DeleteIcon /></IconButton>}
-        />
-      ))}
-    </Container>  
-  </>
-);
+const Favorites = ({ gifList }) => {
+  const dispatch = useDispatch();
+
+  return (
+    <>
+      <Header title="Giphy - Favorites" />
+      <Link to="/">
+        <Icon fontSize="large" />
+      </Link>
+      <Container>
+        {gifList.map((gif, index) => (
+          <Card
+            key={gif.id}
+            title={gif.title}
+            username={gif.username}
+            gifUrl={gif.images?.original?.url}
+            altGif={gif.title}
+            iconElement={
+              <IconButton
+                onClick={() => dispatch(removeFromFavorites(index))}
+              >
+                <DeleteIcon />
+              </IconButton>}
+          />
+        ))}
+      </Container>  
+    </>
+  )
+};
 
 Favorites.propTypes = {
   gifList: PropTypes.arrayOf(PropTypes.shape({
