@@ -14,7 +14,7 @@ import { Container } from './styled';
 const SearchView = ({ gifList, isLoading, onSearch, onClear }) => {
   return (
     <>
-      <Header title="Giphy" />
+      <Header title="Giphy - List" />
       <SearchBar onSearch={onSearch} onClear={onClear} />
       <Container>
         {isLoading && <p>Is loading</p>}

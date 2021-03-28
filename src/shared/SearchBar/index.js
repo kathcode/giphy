@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // Material UI
 import Button from '@material-ui/core/Button';
@@ -56,6 +57,7 @@ const SearchBar = ({ onSearch, onClear }) => {
         size="medium">
         Search for GIF
       </Button>
+      <Link style={{ marginLeft: 10 }} to="/favorites">My saved gifs</Link>
     </Container>
   )
 };

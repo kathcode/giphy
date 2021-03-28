@@ -9,6 +9,7 @@ import {
 import './index.css';
 
 import SearchContainer from './containers/Search';
+import FavoritesContainer from './containers/Favorites';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,6 +17,9 @@ ReactDOM.render(
       <Switch>
         <Route exact path="/">
           <SearchContainer />
+        </Route>
+        <Route exact path="/favorites">
+          <FavoritesContainer />
         </Route>
       </Switch>
     </Router>
