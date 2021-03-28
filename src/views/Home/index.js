@@ -15,8 +15,10 @@ import SearchBar from '../../shared/SearchBar';
 
 import { Container } from './styled';
 
-const HomeView = ({ gifList, isLoading, onSearch, onClear }) => {
+const HomeView = ({ gifList, isLoading, onSearch, onClear, favoriteGifs }) => {
   const dispatch = useDispatch();
+  const isFavorite = (gifId) => favoriteGifs.some(gif => gif.id === gifId);
+
   return (
     <>
       <Header title="Giphy - List" />
@@ -30,6 +32,7 @@ const HomeView = ({ gifList, isLoading, onSearch, onClear }) => {
             username={gif.username}
             gifUrl={gif.images?.original?.url}
             altGif={gif.title}
+            iconColor={isFavorite(gif.id) ? 'blue' : 'gray'}
             iconElement={
               <IconButton
                 onClick={() => dispatch(addToFavorites(gif))}
@@ -41,7 +44,7 @@ const HomeView = ({ gifList, isLoading, onSearch, onClear }) => {
       </Container>
     </>
   )
-}
+};
 
 HomeView.propTypes = {
   gifList: PropTypes.arrayOf(PropTypes.shape({
@@ -57,7 +60,18 @@ HomeView.propTypes = {
   })),
   isLoading: PropTypes.bool,
   onSearch: PropTypes.func,
-  onClear: PropTypes.func
+  onClear: PropTypes.func,
+  favoriteGifs: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    embed_url: PropTypes.string,
+    username: PropTypes.string,
+    title: PropTypes.string,
+    images: PropTypes.shape({
+      original: PropTypes.shape({
+        url: PropTypes.string
+      }),
+    })
+  }))
 }
 
 export default HomeView;

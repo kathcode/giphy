@@ -27,15 +27,15 @@ const IconContainer = styled.div`
     padding: 0px;
     
     svg {
-      color: 	#999999;
+      color: ${props => (props.color || '#999999')};
       font-size: 2.5rem;
     }
   }
 `;
 
-const CardComp = ({ title, gifUrl, altGif, username, iconElement }) => (
+const CardComp = ({ title, gifUrl, altGif, username, iconElement, iconColor }) => (
   <Container>
-    <IconContainer>
+    <IconContainer color={iconColor}>
       {iconElement}
     </IconContainer>
     <img alt={altGif} src={gifUrl} />

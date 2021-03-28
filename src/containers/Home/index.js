@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 // Views
-import SearchView from '../../views/Home'
+import HomeView from '../../views/Home'
 
 // Services
 import * as GifService from '../../services/giphy';
@@ -9,6 +10,7 @@ import * as GifService from '../../services/giphy';
 const HomeContainer = () => {
   const [trendingGifs, setTrendingGifs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const favoriteGifs = useSelector(state => state.favorite.gifList);
 
   useEffect(() => {
     getTrendingGifs();
@@ -35,11 +37,12 @@ const HomeContainer = () => {
   return (
     <div>
       {trendingGifs.length > 0 && (
-        <SearchView
+        <HomeView
           gifList={trendingGifs}
           isLoading={isLoading}
           onSearch={handleSearch}
           onClear={getTrendingGifs}
+          favoriteGifs={favoriteGifs}
         />
       )}
     </div>
