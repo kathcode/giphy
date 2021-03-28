@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Material UI
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
 
 import Card from '../../shared/Card';
+import Header from '../../shared/Header';
+import SearchBar from '../../shared/SearchBar';
+
 import { Container } from './styled';
 
-const SearchView = ({ gifList, isLoading }) => {
+const SearchView = ({ gifList, isLoading, onSearch, onClear }) => {
   return (
     <>
-      {isLoading && <p>Is loading</p>}
+      <Header title="Giphy" />
+      <SearchBar onSearch={onSearch} onClear={onClear} />
       <Container>
+        {isLoading && <p>Is loading</p>}
         {!isLoading && gifList.map(gif => (
           <Card
             key={gif.id}
@@ -39,7 +45,9 @@ SearchView.propTypes = {
       }),
     })
   })),
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  onSearch: PropTypes.func,
+  onClear: PropTypes.func
 }
 
 export default SearchView;

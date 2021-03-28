@@ -23,10 +23,24 @@ const SearchContainer = () => {
     }
   }
 
+  const handleSearch = async (term) => {
+    setIsLoading(true);
+    const response = await GifService.searchGif(term);
+    if (response.data) {
+      setTrendingGifs(response.data);
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div>
       {trendingGifs.length > 0 && (
-        <SearchView gifList={trendingGifs} isLoading={isLoading} />
+        <SearchView
+          gifList={trendingGifs}
+          isLoading={isLoading}
+          onSearch={handleSearch}
+          onClear={getTrendingGifs}
+        />
       )}
     </div>
   )

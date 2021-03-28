@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
+import ClearIcon from '@material-ui/icons/Clear';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
 
@@ -25,8 +26,13 @@ const Input = styled(TextField)`
   width: 50%;
 `;
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, onClear }) => {
   const [term, setTerm] = useState('');
+
+  const handleClear = () => {
+    setTerm('');
+    onClear();
+  }
 
   return (
     <Container>
@@ -34,10 +40,12 @@ const SearchBar = ({ onSearch }) => {
         placeholder="Gif name"
         variant="outlined"
         onChange={(ev) => setTerm(ev.target.value)}
+        value={term}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon />
+              {!term && <SearchIcon />}
+              {term && <ClearIcon data-testid="clear" onClick={handleClear} />}
             </InputAdornment>
           ),
         }}
@@ -54,6 +62,7 @@ const SearchBar = ({ onSearch }) => {
 
 SearchBar.propTypes = {
   onSearch: PropTypes.func,
+  onClear: PropTypes.func
 }
 
 SearchBar.defaultProps = {
