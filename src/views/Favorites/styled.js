@@ -14,3 +14,7 @@ export const Container = styled.div`
 export const Icon = styled(KeyboardBackspaceIcon)`
   margin-left: 10px;
 `;
+
+export const NoItemsMessage = styled.div`
+  text-align: center;
+`;

@@ -10,7 +10,7 @@ import { removeFromFavorites } from '../../store/slices/favoriteSlice';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IconButton } from '@material-ui/core';
 
-import { Container, Icon } from './styled';
+import { Container, Icon, NoItemsMessage } from './styled';
 
 import Card from '../../shared/Card';
 import Header from '../../shared/Header';
@@ -24,6 +24,7 @@ const Favorites = ({ gifList }) => {
       <Link to="/">
         <Icon fontSize="large" />
       </Link>
+      {gifList.length === 0 && <NoItemsMessage>You don't have favorite gifs</NoItemsMessage>}
       <Container>
         {gifList.map((gif, index) => (
           <Card
