@@ -7,11 +7,7 @@ import FavoritesView from '../../views/Favorites'
 const FavoritesContainer = () => {
   const favoriteGifs = useSelector(state => state.favorite.gifList);
 
-  return (
-    <div>
-      <FavoritesView gifList={favoriteGifs} />
-    </div>
-  )
+  return (<FavoritesView gifList={favoriteGifs} />)
 };
 
 export default FavoritesContainer;

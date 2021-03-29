@@ -10,17 +10,20 @@ import * as GifService from '../../services/giphy';
 const HomeContainer = () => {
   const [trendingGifs, setTrendingGifs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [totalGifsCount, setTotalGifsCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const favoriteGifs = useSelector(state => state.favorite.gifList);
 
   useEffect(() => {
     getTrendingGifs();
   }, [])
 
-  const getTrendingGifs = async () => {
+  const getTrendingGifs = async (page) => {
     setIsLoading(true);
-    const response = await GifService.getTrendingGif();
+    const response = await GifService.getTrendingGif(page);
     if (response.data) {
       setTrendingGifs(response.data);
+      setTotalGifsCount(response.pagination.total_count)
       setIsLoading(false);
     }
   }
@@ -43,6 +46,11 @@ const HomeContainer = () => {
     }
   }
 
+  const handlePageChange = async (page) => {
+    setCurrentPage(page);
+    getTrendingGifs(page > 1 ? page * 10 : 1);
+  }
+
   return (
     <HomeView
       gifList={trendingGifs}
@@ -51,6 +59,9 @@ const HomeContainer = () => {
       onRandomSearch={handleRandomSearch}
       onClear={getTrendingGifs}
       favoriteGifs={favoriteGifs}
+      onPageChange={handlePageChange}
+      totalGifsCount={totalGifsCount}
+      currentPage={currentPage}
     />
   )
 };

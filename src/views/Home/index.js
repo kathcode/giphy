@@ -14,9 +14,19 @@ import Card from '../../shared/Card';
 import Header from '../../shared/Header';
 import SearchBar from '../../shared/SearchBar';
 
-import { Container } from './styled';
+import { Container, PaginationC } from './styled';
 
-const HomeView = ({ gifList, isLoading, onSearch, onRandomSearch, onClear, favoriteGifs }) => {
+const HomeView = ({
+  gifList,
+  isLoading,
+  onSearch,
+  onRandomSearch,
+  onClear,
+  favoriteGifs,
+  onPageChange,
+  totalGifsCount,
+  currentPage
+}) => {
   const dispatch = useDispatch();
   const isFavorite = (gifId) => favoriteGifs.some(gif => gif.id === gifId);
 
@@ -43,6 +53,14 @@ const HomeView = ({ gifList, isLoading, onSearch, onRandomSearch, onClear, favor
           />
         ))}
       </Container>
+      {!isLoading &&
+        <PaginationC
+          count={totalGifsCount} color="primary"
+          boundaryCount={2}
+          onChange={((ev, page) => onPageChange(page))}
+          page={currentPage}
+        />
+      }
     </>
   )
 };
@@ -63,6 +81,7 @@ HomeView.propTypes = {
   onSearch: PropTypes.func,
   onRandomSearch: PropTypes.func,
   onClear: PropTypes.func,
+  onPageChange: PropTypes.func,
   favoriteGifs: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     embed_url: PropTypes.string,
@@ -73,11 +92,17 @@ HomeView.propTypes = {
         url: PropTypes.string
       }),
     })
-  }))
+  })),
+  totalGifsCount: PropTypes.number,
+  currentPage: PropTypes.number
 }
 
 HomeView.defaultProps = {
-  favoriteGifs: []
+  favoriteGifs: [],
+  onSearch: () => {},
+  onRandomSearch: () => {},
+  onClear: () => {},
+  onPageChange: () => {},
 }
 
 export default HomeView;
