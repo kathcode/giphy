@@ -8,15 +8,29 @@ import {
 } from "react-router-dom";
 import store from './store/store';
 import { Provider } from 'react-redux';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
 
 import './index.css';
 
 import HomeContainer from './containers/Home';
 import FavoritesContainer from './containers/Favorites';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#ffbc91',
+    },
+    secondary: {
+      main: '#fff7da',
+    },
+  },
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+    <ThemeProvider theme={theme}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -27,6 +41,7 @@ ReactDOM.render(
           </Route>
         </Switch>
       </Router>
+    </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

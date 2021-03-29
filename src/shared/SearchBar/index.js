@@ -40,13 +40,14 @@ const SearchBar = ({ onSearch, onRandomSearch, onClear }) => {
       <Input
         placeholder="Gif name"
         variant="outlined"
+        color="primary"
         onChange={(ev) => setTerm(ev.target.value)}
         value={term}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              {!term && <SearchIcon />}
-              {term && <ClearIcon data-testid="clear" onClick={handleClear} />}
+              {!term && <SearchIcon color="primary" />}
+              {term && <ClearIcon color="primary" data-testid="clear" onClick={handleClear} />}
             </InputAdornment>
           ),
         }}
@@ -54,16 +55,18 @@ const SearchBar = ({ onSearch, onRandomSearch, onClear }) => {
       <Button
         onClick={(ev) => onSearch(term)}
         variant="outlined"
-        size="small">
+        size="medium"
+        color="primary">
         Search for GIF
       </Button>
       <Button
         onClick={(ev) => onRandomSearch(term)}
         variant="outlined"
-        size="small">
+        size="medium"
+        color="primary">
         Search random
       </Button>
-      <Link style={{ marginLeft: 10 }} to="/favorites">My saved gifs</Link>
+      <Link style={{ marginLeft: 10, color: '#333' }} to="/favorites">My saved gifs</Link>
     </Container>
   )
 };

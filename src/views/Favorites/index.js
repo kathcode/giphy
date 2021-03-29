@@ -37,7 +37,7 @@ const Favorites = ({ gifList }) => {
               <IconButton
                 onClick={() => dispatch(removeFromFavorites(index))}
               >
-                <DeleteIcon />
+                <DeleteIcon color="primary" />
               </IconButton>}
           />
         ))}

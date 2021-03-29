@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Card from '@material-ui/core/Card';
 
-
 const Container = styled(Card)`
-  padding: 10px;
+  padding-bottom: 10px;
   position: relative;
 
   img {
@@ -33,14 +32,20 @@ const IconContainer = styled.div`
   }
 `;
 
+const Description = styled.div`
+  padding: 10px;
+`;
+
 const CardComp = ({ title, gifUrl, altGif, username, iconElement, iconColor }) => (
   <Container>
     <IconContainer color={iconColor}>
       {iconElement}
     </IconContainer>
     <img alt={altGif} src={gifUrl} />
-    <div><strong>{title}</strong></div>
-    <p>{username}</p>
+    <Description>
+      <div><strong>{title}</strong></div>
+      <p>{username}</p>
+    </Description>
   </Container>
 );
 
