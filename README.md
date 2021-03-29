@@ -8,8 +8,7 @@ This project was created with the following technologies:
 * Redux Toolkit
 * React testing library
 * Styled components
-
-In this project used the API of [Giphy](https://developers.giphy.com/)
+* API of [Giphy](https://developers.giphy.com/)
 
 ## Available Scripts
 
