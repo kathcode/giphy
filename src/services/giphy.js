@@ -34,3 +34,14 @@ export const getRandomGif = async (term) => {
    return error
   }
 };
+
+export const translateGifs = async (translate, term) => {
+  const URL = `http://api.giphy.com/v1/stickers/translate?api_key=${environment.API_KEY}&s=${translate}%20${term}`;
+  
+  try {
+    const response = await axios(URL);
+    return response.data;
+  } catch (error) {
+   return error
+  }
+};

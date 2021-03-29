@@ -16,3 +16,12 @@ export const PaginationC = styled(Pagination)`
   justify-content: center;
   padding: 40px 0px;
 `;
+
+export const ChipsContainer = styled.div`
+  text-align: center;
+  margin-bottom: 20px;
+
+  div {
+    margin-right: 5px;
+  }
+`;

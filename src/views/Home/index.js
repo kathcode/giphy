@@ -9,12 +9,13 @@ import { addToFavorites } from '../../store/slices/favoriteSlice';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Chip from '@material-ui/core/Chip';
 
 import Card from '../../shared/Card';
 import Header from '../../shared/Header';
 import SearchBar from '../../shared/SearchBar';
 
-import { Container, PaginationC } from './styled';
+import { Container, PaginationC, ChipsContainer } from './styled';
 
 const HomeView = ({
   gifList,
@@ -25,7 +26,8 @@ const HomeView = ({
   favoriteGifs,
   onPageChange,
   totalGifsCount,
-  currentPage
+  currentPage,
+  translateToBlue
 }) => {
   const dispatch = useDispatch();
   const isFavorite = (gifId) => favoriteGifs.some(gif => gif.id === gifId);
@@ -34,6 +36,11 @@ const HomeView = ({
     <>
       <Header title="Giphy - List" />
       <SearchBar onSearch={onSearch} onRandomSearch={onRandomSearch} onClear={onClear} />
+      <ChipsContainer>
+        <Chip label="Translate to blue" color="secondary" onClick={() => translateToBlue('blue')} />
+        <Chip label="Translate to black" color="secondary" onClick={() => translateToBlue('black')} />
+        <Chip label="Translate to beauty" color="secondary" onClick={() => translateToBlue('beauty')} />
+      </ChipsContainer>
       <Container>
         {isLoading && <CircularProgress />}
         {!isLoading && gifList.map(gif => (
@@ -43,7 +50,7 @@ const HomeView = ({
             username={gif.username}
             gifUrl={gif.images?.original?.url}
             altGif={gif.title}
-            iconColor={isFavorite(gif.id) ? 'blue' : 'gray'}
+            iconColor={isFavorite(gif.id) ? '#ffbc91' : '#fff7da'}
             iconElement={
               <IconButton
                 onClick={() => (!isFavorite(gif.id) && dispatch(addToFavorites(gif)))}
@@ -55,7 +62,8 @@ const HomeView = ({
       </Container>
       {!isLoading &&
         <PaginationC
-          count={totalGifsCount} color="primary"
+          count={totalGifsCount}
+          color="primary"
           boundaryCount={2}
           onChange={((ev, page) => onPageChange(page))}
           page={currentPage}
