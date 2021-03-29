@@ -24,4 +24,13 @@ describe('SearchBar component', () => {
     fireEvent.click(screen.getByText(/Search for GIF/));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
+
+  test('should handle the onRandomSearch', () => {
+    const handleRandomSearch = jest.fn();
+    const history = createMemoryHistory();
+    render(<Router history={history}><SearchBar onRandomSearch={handleRandomSearch} /></Router>);
+    
+    fireEvent.click(screen.getByText(/Search random/));
+    expect(handleRandomSearch).toHaveBeenCalledTimes(1);
+  });
 });
